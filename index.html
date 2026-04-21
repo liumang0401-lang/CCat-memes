@@ -206,7 +206,7 @@ const scoreMap = [
   { A: 0.5, B: 1, C: 2, D: 0 }  // Q10
 ];
 
-// ✅ 你的四张猫图直链（已验证可用）
+// ✅ 你的四张猫图直链
 const catImages = { 
     sentinel: "sentinel.webp", 
     guardian: "guardian.webp", 
@@ -216,6 +216,8 @@ const catImages = {
 
 document.getElementById('submit-btn').addEventListener('click', function() {
   let totalScore = 0;
+  
+  // 1. 检查是否做完题目
   for (let i = 1; i <= 10; i++) {
     const selected = document.querySelector(`input[name="q${i}"]:checked`);
     if (!selected) {
@@ -224,6 +226,15 @@ document.getElementById('submit-btn').addEventListener('click', function() {
     }
     totalScore += scoreMap[i - 1][selected.value];
   }
+  
+  // 2. 播放声音 (关键修改：放在计算之后，跳转之前)
+  var audio = document.getElementById('cat-sound');
+  if(audio) {
+      audio.play().catch(function(error) {
+          console.log("播放失败，可能是浏览器拦截:", error);
+      });
+  }
+
   totalScore = Math.round(totalScore * 2) / 2;
 
   let enKey;
@@ -232,7 +243,7 @@ document.getElementById('submit-btn').addEventListener('click', function() {
   else if (totalScore >= 5) enKey = "healer";
   else enKey = "newbie";
 
-  // 切换页面
+  // 3. 切换页面
   document.getElementById('quiz').style.display = 'none';
   document.getElementById('result').style.display = 'block';
   const imgEl = document.getElementById('cat-image');
@@ -249,6 +260,9 @@ document.getElementById('submit-btn').addEventListener('click', function() {
   };
 });
 </script>
+
+<!-- 音频文件：确保 meow.mp3 和你的 html 在同一个文件夹里 -->
 <audio id="cat-sound" src="meow.mp3"></audio>
+
 </body>
 </html>
