@@ -81,6 +81,13 @@
       font-size: 14px;
       margin-top: 30px;
     }
+    /* 新增样式：提示文字 */
+    .save-tip {
+        color: #666;
+        font-size: 14px;
+        margin-top: 10px;
+        display: none; /* 默认隐藏 */
+    }
   </style>
 </head>
 <body>
@@ -187,9 +194,9 @@
 <!-- 精简结果页 -->
 <div id="result">
   <img id="cat-image" src="" alt="你的反诈猫">
-  <br><br>
+  <p id="save-tip" class="save-tip">👆 长按图片即可保存 👆</p>
+  <br>
   <button onclick="location.reload()">🔄 再测一次</button>
-  <button id="download-btn">💾 保存图片</button>
 </div>
 
 <script>
@@ -206,7 +213,7 @@ const scoreMap = [
   { A: 0.5, B: 1, C: 2, D: 0 }  // Q10
 ];
 
-// ✅ 你的四张猫图直链
+// ✅ 你的四张猫图直链（已验证可用）
 const catImages = { 
     sentinel: "sentinel.webp", 
     guardian: "guardian.webp", 
@@ -216,8 +223,6 @@ const catImages = {
 
 document.getElementById('submit-btn').addEventListener('click', function() {
   let totalScore = 0;
-  
-  // 1. 检查是否做完题目
   for (let i = 1; i <= 10; i++) {
     const selected = document.querySelector(`input[name="q${i}"]:checked`);
     if (!selected) {
@@ -226,15 +231,6 @@ document.getElementById('submit-btn').addEventListener('click', function() {
     }
     totalScore += scoreMap[i - 1][selected.value];
   }
-  
-  // 2. 播放声音 (关键修改：放在计算之后，跳转之前)
-  var audio = document.getElementById('cat-sound');
-  if(audio) {
-      audio.play().catch(function(error) {
-          console.log("播放失败，可能是浏览器拦截:", error);
-      });
-  }
-
   totalScore = Math.round(totalScore * 2) / 2;
 
   let enKey;
@@ -243,26 +239,25 @@ document.getElementById('submit-btn').addEventListener('click', function() {
   else if (totalScore >= 5) enKey = "healer";
   else enKey = "newbie";
 
-  // 3. 切换页面
+  // 播放音效
+  var audio = document.getElementById('cat-sound');
+  if(audio) audio.play();
+
+  // 切换页面
   document.getElementById('quiz').style.display = 'none';
   document.getElementById('result').style.display = 'block';
   const imgEl = document.getElementById('cat-image');
   imgEl.src = catImages[enKey];
 
-  // 保存图片功能
-  document.getElementById('download-btn').onclick = function() {
-    const link = document.createElement('a');
-    link.download = `我的反诈人格-${enKey}.jpg`;
-    link.href = imgEl.src;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
+  // 如果是微信环境，显示长按提示
+  const tipEl = document.getElementById('save-tip');
+  if (navigator.userAgent.toLowerCase().match(/MicroMessenger/i) == "micromessenger") {
+      tipEl.style.display = 'block';
+  }
 });
 </script>
 
-<!-- 音频文件：确保 meow.mp3 和你的 html 在同一个文件夹里 -->
+<!-- 音频标签 -->
 <audio id="cat-sound" src="meow.mp3"></audio>
-
 </body>
 </html>
