@@ -15,10 +15,10 @@
 
         body {
             font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
-            background: linear-gradient(135deg, #fff9fb, #f8f4ff);
+            background: #fff9fb;
             color: #333;
             min-height: 100vh;
-            padding: 0 16px;
+            padding: 0 24px; /* 关键：左右留白 ≈ 原图 */
         }
 
         #app {
@@ -27,138 +27,135 @@
             background: white;
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.06);
         }
 
-        /* 顶部横幅 - 柔和粉 */
+        /* 顶部横幅 - 严格复刻原图粉色 */
         .header-banner {
-            background: linear-gradient(45deg, #ff9eb5, #ffcce6);
-            padding: 24px 20px;
+            background: linear-gradient(45deg, #ff697a, #ff8ea3);
+            padding: 28px 24px;
             text-align: center;
         }
 
         .header-banner h1 {
-            font-size: 1.8rem;
+            font-size: 1.9rem;
             font-weight: 700;
             color: white;
-            margin-bottom: 8px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.15);
         }
 
         .header-banner p {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             opacity: 0.95;
             color: white;
         }
 
-        /* 主体内容 */
+        /* 主体内容 - 重点：留白 & 关键词加粗 */
         main {
-            padding: 20px;
+            padding: 24px 0;
         }
 
         .question {
             background: #fdfdff;
             border-radius: 16px;
-            padding: 20px;
-            margin-bottom: 16px;
-            border-left: 4px solid #ff9eb5;
-            box-shadow: 0 4px 12px rgba(255, 158, 181, 0.1);
+            padding: 22px 20px;
+            margin-bottom: 20px;
+            border-left: 4px solid #ff697a;
+            box-shadow: 0 4px 12px rgba(255, 105, 122, 0.08);
         }
 
-        /* 👉 关键改进：问题文字加粗 + 更大字号 */
-        .question-title {
-            font-size: 1.1rem; /* 17.6px */
-            font-weight: 600;
-            line-height: 1.5;
-            color: #333;
-            margin-bottom: 14px;
-            display: block;
-        }
-
-        .question-text {
-            font-size: 1rem; /* 16px */
-            line-height: 1.5;
+        .question p {
+            font-size: 16px;
+            line-height: 1.55;
             color: #444;
-            margin-top: 8px;
+            margin: 0;
+        }
+
+        /* 👉 仅关键句加粗（如原图：Q1中“宝贝”“转200”“菜市场”） */
+        .question p strong {
+            font-weight: 700;
+            color: #333;
         }
 
         .options {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 14px;
+            margin-top: 16px;
         }
 
-        /* 👉 选项文字加粗 + 适中字号 */
         .option {
-            background: white;
+            background: #f8f9fa;
             border: 1px solid #eee;
             border-radius: 12px;
-            padding: 15px 16px;
+            padding: 16px;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.25s ease;
             display: flex;
             align-items: flex-start;
             gap: 12px;
         }
 
         .option:hover {
-            background: #fff5f8;
-            border-color: #ff9eb5;
-            transform: translateX(3px);
+            background: white;
+            border-color: #ff697a;
+            transform: translateX(2px);
         }
 
         .option input[type="radio"] {
             margin-top: 4px;
             width: 20px;
             height: 20px;
-            accent-color: #ff9eb5;
+            accent-color: #ff697a;
         }
 
-        /* 选项字母加粗 + 稍大 */
         .option-label {
             font-size: 15px;
-            font-weight: 600;
+            font-weight: 500;
             color: #333;
             flex: 1;
+            line-height: 1.5;
         }
 
-        /* 提交按钮 */
+        /* 提交按钮 - 复刻原图大按钮 */
         #submit-btn {
-            width: 100%;
-            background: linear-gradient(45deg, #ff9eb5, #ff7aa1);
+            width: 90%;
+            max-width: 400px;
+            margin: 30px auto;
+            background: linear-gradient(45deg, #ff697a, #ff8ea3);
             color: white;
             border: none;
-            padding: 16px;
-            font-size: 1.1rem;
-            border-radius: 16px;
+            padding: 18px 0;
+            font-size: 1.2rem;
+            border-radius: 26px;
             cursor: pointer;
-            margin: 24px 0;
             font-weight: 600;
-            box-shadow: 0 6px 15px rgba(255, 158, 181, 0.3);
+            box-shadow: 0 6px 18px rgba(255, 105, 122, 0.35);
             transition: all 0.3s ease;
         }
 
         #submit-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(255, 158, 181, 0.4);
+            box-shadow: 0 8px 22px rgba(255, 105, 122, 0.4);
         }
 
         #submit-btn:active {
             transform: translateY(1px);
-            box-shadow: 0 4px 10px rgba(255, 158, 181, 0.3);
+            box-shadow: 0 4px 12px rgba(255, 105, 122, 0.3);
         }
 
-        /* 结果页 */
+        /* 结果页 - 极简，无遮罩 */
         #result {
-            padding: 30px 20px;
+            padding: 32px 24px 40px;
             text-align: center;
             display: none;
         }
 
         #result h2 {
-            font-size: 1.3rem;
-            color: #ff9eb5;
-            margin-bottom: 20px;
+            font-size: 1.4rem;
+            color: #ff697a;
+            margin-bottom: 24px;
             font-weight: 600;
         }
 
@@ -167,32 +164,29 @@
             height: auto;
             border-radius: 16px;
             margin: 20px 0;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-            /* 👉 关键：支持长按保存 */
-            -webkit-user-select: none;
-            user-select: none;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
         }
 
         .result-actions {
             display: flex;
             justify-content: center;
-            gap: 12px;
-            margin-top: 24px;
+            gap: 16px;
+            margin-top: 28px;
         }
 
         .btn {
             background: #6a7cff;
             color: white;
             border: none;
-            padding: 14px 24px;
-            border-radius: 16px;
-            font-size: 1rem;
+            padding: 16px 32px;
+            border-radius: 24px;
+            font-size: 1.05rem;
             font-weight: 500;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.25s ease;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
         }
 
         .btn:hover {
@@ -203,29 +197,30 @@
         /* 底部机构信息 - 小字，靠底 */
         .footer-info {
             text-align: center;
-            padding: 20px 0;
-            font-size: 0.85rem;
+            padding: 24px 0;
+            font-size: 0.87rem;
             color: #777;
             background: #f9f9fb;
             margin-top: auto;
         }
 
-        /* 响应式增强 */
-        @media (max-width: 480px) {
-            .question-title {
-                font-size: 1.05rem; /* 16.8px */
+        /* 响应式：确保在小屏上不挤压 */
+        @media (max-width: 420px) {
+            .header-banner {
+                padding: 24px 16px;
             }
-            .question-text {
-                font-size: 0.95rem; /* 15.2px */
+            .header-banner h1 {
+                font-size: 1.7rem;
             }
-            .option-label {
-                font-size: 14.5px;
+            .question {
+                padding: 20px 16px;
+            }
+            #submit-btn {
+                width: 100%;
+                padding: 16px 0;
+                font-size: 1.1rem;
             }
         }
-
-        /* 隐藏滚动条 */
-        ::-webkit-scrollbar { display: none; }
-        body { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
 <body>
@@ -238,12 +233,12 @@
         <main id="quiz">
             <form id="question-form">
                 <div class="question">
-                    <span class="question-title">Q1：你正在图书馆自习，微信突然弹出妈妈的消息</span>
-                    <span class="question-text">"宝贝，妈妈手机刚刚摔坏了，打不了电话，用你阿姨的手机给你发的消息，我在菜市场买牛肉呢，你先给妈妈转200买菜钱~"附上一张菜市场的照片。你会？</span>
+                    <p>Q1：你正在图书馆自习，微信突然弹出妈妈的消息<br>
+                    "<strong>宝贝</strong>，妈妈手机刚刚摔坏了，打不了电话，用你阿姨的手机给你发的消息，我在<strong>菜市场</strong>买<strong>牛肉</strong>呢，你先给妈妈转<strong>200</strong>买菜钱~"附上一张<strong>菜市场</strong>的照片。你会？</p>
                     <div class="options">
                         <label class="option">
                             <input type="radio" name="q1" value="A">
-                            <span class="option-label">A 转200过去，反正过两天拿生活费了</span>
+                            <span class="option-label">A 转<strong>200</strong>过去，反正过两天拿生活费了</span>
                         </label>
                         <label class="option">
                             <input type="radio" name="q1" value="B">
@@ -251,17 +246,17 @@
                         </label>
                         <label class="option">
                             <input type="radio" name="q1" value="C">
-                            <span class="option-label">C 先转100应急，等确认后再补</span>
+                            <span class="option-label">C 先转<strong>100</strong>应急，等确认后再补</span>
                         </label>
                         <label class="option">
                             <input type="radio" name="q1" value="D">
-                            <span class="option-label">D 什么鬼？我妈根本不会叫我宝贝，不理！</span>
+                            <span class="option-label">D 什么鬼？我妈根本不会叫我<strong>宝贝</strong>，不理！</span>
                         </label>
                     </div>
                 </div>
 
                 <div class="question">
-                    <span class="question-title">Q2：你在群里做了四单点赞任务，每单都赚了20元，秒到账，但第五单需要垫付300元，完成任务后返350元。你有点犹豫，但群友都在晒到账截图"稳得很！"你会？</span>
+                    <p>Q2：你在群里做了四单点赞任务，每单都赚了<strong>20元</strong>，秒到账，但第五单需要垫付<strong>300元</strong>，完成任务后返<strong>350元</strong>。你有点犹豫，但群友都在晒到账截图"<strong>稳得很</strong>！"你会？</p>
                     <div class="options">
                         <label class="option">
                             <input type="radio" name="q2" value="A">
@@ -273,7 +268,7 @@
                         </label>
                         <label class="option">
                             <input type="radio" name="q2" value="C">
-                            <span class="option-label">C 整！三百冲一单，晚点翻倍赚回来</span>
+                            <span class="option-label">C 整！<strong>三百</strong>冲一单，晚点翻倍赚回来</span>
                         </label>
                         <label class="option">
                             <input type="radio" name="q2" value="D">
@@ -283,7 +278,7 @@
                 </div>
 
                 <div class="question">
-                    <span class="question-title">Q3：有人高价回收你的《原神》账号，让你到"游易宝"平台交易。你注册后，看到余额显示"4500元"，但选择提现时要求缴纳2000元保证金，平台客服说"这是系统保护交易双方的规则，缴纳完即刻到账"。你会？</span>
+                    <p>Q3：有人高价回收你的《原神》账号，让你到"<strong>游易宝</strong>"平台交易。你注册后，看到余额显示"<strong>4500元</strong>"，但选择提现时要求缴纳<strong>2000元</strong>保证金，平台客服说"这是系统保护交易双方的规则，缴纳完即刻到账"。你会？</p>
                     <div class="options">
                         <label class="option">
                             <input type="radio" name="q3" value="A">
@@ -295,7 +290,7 @@
                         </label>
                         <label class="option">
                             <input type="radio" name="q3" value="C">
-                            <span class="option-label">C 先充500试试，看看有啥反应</span>
+                            <span class="option-label">C 先充<strong>500</strong>试试，看看有啥反应</span>
                         </label>
                         <label class="option">
                             <input type="radio" name="q3" value="D">
@@ -305,7 +300,7 @@
                 </div>
 
                 <div class="question">
-                    <span class="question-title">Q4：表妹（12岁）兴奋地告诉你："哥！我在视频号领到免费皮肤了，但是要扫1.88元激活耶，你能帮我吗？"你看到她手机屏幕上跳出"司法冻结"警告。你会？</span>
+                    <p>Q4：表妹（12岁）兴奋地告诉你："哥！我在视频号领到<strong>免费皮肤</strong>了，但是要扫<strong>1.88元</strong>激活耶，你能帮我吗？"你看到她手机屏幕上跳出"<strong>司法冻结</strong>"警告。你会？</p>
                     <div class="options">
                         <label class="option">
                             <input type="radio" name="q4" value="A">
@@ -321,13 +316,13 @@
                         </label>
                         <label class="option">
                             <input type="radio" name="q4" value="D">
-                            <span class="option-label">D 举报该视频号，教育其免费的才是最贵的</span>
+                            <span class="option-label">D 举报该视频号，教育其<strong>免费的才是最贵的</strong></span>
                         </label>
                     </div>
                 </div>
 
                 <div class="question">
-                    <span class="question-title">Q5：网恋了半年的女友突然跟你说："在一起半年了，你能不能给我买一个纪念礼物或者给我转账5200证明你爱我呀？"你会？</span>
+                    <p>Q5：网恋了半年的女友突然跟你说："在一起半年了，你能不能给我买一个纪念礼物或者给我转账<strong>5200</strong>证明你爱我呀？"你会？</p>
                     <div class="options">
                         <label class="option">
                             <input type="radio" name="q5" value="A">
@@ -335,7 +330,7 @@
                         </label>
                         <label class="option">
                             <input type="radio" name="q5" value="B">
-                            <span class="option-label">B 没见过面呢，先转个520稳妥一点~</span>
+                            <span class="option-label">B 没见过面呢，先转个<strong>520</strong>稳妥一点~</span>
                         </label>
                         <label class="option">
                             <input type="radio" name="q5" value="C">
@@ -349,7 +344,7 @@
                 </div>
 
                 <div class="question">
-                    <span class="question-title">Q6：视频通话里，辅导员一脸焦急："你那个助学金还不领取，马上关闭领取通道了，你赶紧点群里的链接填信息申报，否则后果自负！"画面里确实是辅导员的脸和学校背景，连他脸上的痣都一模一样的。你会？</span>
+                    <p>Q6：视频通话里，辅导员一脸焦急："你那个助学金还不领取，马上关闭领取通道了，你赶紧点群里的链接填信息申报，否则后果自负！"画面里确实是辅导员的脸和学校背景，连他脸上的痣都一模一样的。你会？</p>
                     <div class="options">
                         <label class="option">
                             <input type="radio" name="q6" value="A">
@@ -371,7 +366,7 @@
                 </div>
 
                 <div class="question">
-                    <span class="question-title">Q7：你接到电商平台客服电话"同学，你前天买的鞋子发的都是右脚，现在给你重新补发和额外补偿100元，别给我们差评好么？你打开支付宝备用金，按我说的操作领取"，你打开备用金，看到500元正在账户上，你会？</span>
+                    <p>Q7：你接到电商平台客服电话"同学，你前天买的鞋子发的都是右脚，现在给你重新补发和额外补偿<strong>100元</strong>，别给我们差评好么？你打开支付宝备用金，按我说的操作领取"，你打开备用金，看到<strong>500元</strong>正在账户上，你会？</p>
                     <div class="options">
                         <label class="option">
                             <input type="radio" name="q7" value="A">
@@ -383,7 +378,7 @@
                         </label>
                         <label class="option">
                             <input type="radio" name="q7" value="C">
-                            <span class="option-label">C 先领500，再退100，白赚400块？岂不妙哉！</span>
+                            <span class="option-label">C 先领<strong>500</strong>，再退<strong>100</strong>，白赚<strong>400</strong>块？岂不妙哉！</span>
                         </label>
                         <label class="option">
                             <input type="radio" name="q7" value="D">
@@ -393,7 +388,7 @@
                 </div>
 
                 <div class="question">
-                    <span class="question-title">Q8：你抢了三次陶喆演唱会门票都没成功，正懊恼时，上次卖你票的黄牛正在售卖团体票"仅限今晚，大粉有急事去不了，原价出连坐四张！可实名！带上信息来！"附上售票平台截图和座位图，你找了对方，他说"信不过我的话先付2000定金保留，尾款演出前一周付。"你会？</span>
+                    <p>Q8：你抢了三次陶喆演唱会门票都没成功，正懊恼时，上次卖你票的黄牛正在售卖团体票"仅限今晚，大粉有急事去不了，原价出连坐四张！可实名！带上信息来！"附上售票平台截图和座位图，你找了对方，他说"信不过我的话先付<strong>2000</strong>定金保留，尾款演出前一周付。"你会？</p>
                     <div class="options">
                         <label class="option">
                             <input type="radio" name="q8" value="A">
@@ -415,11 +410,11 @@
                 </div>
 
                 <div class="question">
-                    <span class="question-title">Q9：期末周压力爆表，你看到校园墙有人发："体测代跑80元包过/长期代课400包月/代写论文300起，学长学姐团队，售后无忧！"你还发现身边几个同学都找过代写，还挺靠谱。你会？</span>
+                    <p>Q9：期末周压力爆表，你看到校园墙有人发："体测代跑<strong>80元</strong>包过/长期代课<strong>400包月</strong>/代写论文<strong>300起</strong>，学长学姐团队，售后无忧！"你还发现身边几个同学都找过代写，还挺靠谱。你会？</p>
                     <div class="options">
                         <label class="option">
                             <input type="radio" name="q9" value="A">
-                            <span class="option-label">A 体测我真跑不动了，80就80</span>
+                            <span class="option-label">A 体测我真跑不动了，<strong>80</strong>就<strong>80</strong></span>
                         </label>
                         <label class="option">
                             <input type="radio" name="q9" value="B">
@@ -431,13 +426,13 @@
                         </label>
                         <label class="option">
                             <input type="radio" name="q9" value="D">
-                            <span class="option-label">D 在该帖子底下评论"别找！有人因此被勒索2000元，还上了学校通报"</span>
+                            <span class="option-label">D 在该帖子底下评论"别找！有人因此被勒索<strong>2000元</strong>，还上了学校通报"</span>
                         </label>
                     </div>
                 </div>
 
                 <div class="question">
-                    <span class="question-title">Q10：你装了国家反诈中心APP，但总是关着来电预警，这天，一个陌生电话打开，手机弹出"疑似诈骗！"你会？</span>
+                    <p>Q10：你装了国家反诈中心APP，但总是关着来电预警，这天，一个陌生电话打开，手机弹出"<strong>疑似诈骗</strong>！"你会？</p>
                     <div class="options">
                         <label class="option">
                             <input type="radio" name="q10" value="A">
@@ -453,7 +448,7 @@
                         </label>
                         <label class="option">
                             <input type="radio" name="q10" value="D">
-                            <span class="option-label">D 有时系统也会"智障"，接起来听听是啥，万一是什么重要电话呢</span>
+                            <span class="option-label">D 有时系统也会"<strong>智障</strong>"，接起来听听是啥，万一是什么重要电话呢</span>
                         </label>
                     </div>
                 </div>
@@ -464,27 +459,15 @@
 
         <section id="result">
             <h2>你的反诈人格测试是：</h2>
-            <div style="margin: 20px 0;">
+            <div style="margin: 24px 0;">
                 <img id="cat-image" src="" alt="你的反诈人格">
             </div>
             <audio id="cat-sound" preload="auto">
                 <source src="cat.mp3" type="audio/mpeg">
             </audio>
             <div class="result-actions">
-                <button id="restart-btn" class="btn">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M2 12l10 10 10-10"/>
-                        <path d="M2 12l10 10 10-10"/>
-                    </svg>
-                    再测一次
-                </button>
-                <button id="save-btn" class="btn">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
-                        <polyline points="7 10 12 15 17 10"/>
-                    </svg>
-                    保存图片
-                </button>
+                <button id="restart-btn" class="btn">🔄 再测一次</button>
+                <button id="save-btn" class="btn">💾 保存图片</button>
             </div>
         </section>
 
@@ -495,66 +478,86 @@
 
     <script src="index.js"></script>
     <script>
-        // ✅ 长按保存图片功能（原生实现，无需跳转）
+        // ✅ 真·长按保存（兼容 iOS/Android，无需跳转）
         const catImage = document.getElementById('cat-image');
         let touchStartTime;
 
-        catImage.addEventListener('touchstart', function(e) {
+        // 防止默认行为干扰
+        catImage.addEventListener('touchstart', e => {
             touchStartTime = Date.now();
-            e.preventDefault(); // 防止默认行为干扰
+            e.preventDefault();
         });
 
-        catImage.addEventListener('touchend', function(e) {
-            const touchDuration = Date.now() - touchStartTime;
-            // 长按阈值：800ms
-            if (touchDuration > 800) {
+        catImage.addEventListener('touchend', async e => {
+            const duration = Date.now() - touchStartTime;
+            if (duration > 800) {
                 e.preventDefault();
-                saveImageToPhone(catImage.src);
+                await saveImageNative(catImage.src);
             }
         });
 
-        // 长按保存核心函数（兼容 iOS/Android）
-        async function saveImageToPhone(url) {
+        // ⚠️ 关键修复：使用 canvas 绘制 + toBlob 解决跨域/CORS 问题
+        async function saveImageNative(url) {
             try {
-                // 尝试使用 download attribute（部分安卓支持）
-                const link = document.createElement('a');
-                link.href = url;
-                link.download = `我的反诈人格-${getPersonalityKey()}.jpg`;
-                
-                // 模拟点击（部分浏览器需在用户手势内触发）
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-
-                // 如果失败，尝试 fetch + blob 方式（更可靠）
-                if (!link.href.startsWith('blob:')) {
-                    const response = await fetch(url);
-                    const blob = await response.blob();
-                    const blobUrl = URL.createObjectURL(blob);
-                    link.href = blobUrl;
+                // 如果是本地图片（如 data:image），直接下载
+                if (url.startsWith('data:')) {
+                    const link = document.createElement('a');
+                    link.href = url;
+                    link.download = `我的反诈人格-${getPersonalityKey()}.jpg`;
+                    document.body.appendChild(link);
                     link.click();
-                    URL.revokeObjectURL(blobUrl);
+                    document.body.removeChild(link);
+                    alert('✅ 图片已保存！');
+                    return;
                 }
 
-                alert('✅ 图片已保存到相册！');
+                // 否则：用 canvas 绘制远程图（绕过 CORS 限制）
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+                const img = new Image();
+                img.crossOrigin = 'anonymous'; // 尝试跨域
+
+                img.onload = () => {
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+                    ctx.drawImage(img, 0, 0);
+
+                    canvas.toBlob(blob => {
+                        if (!blob) {
+                            fallbackSave(url);
+                            return;
+                        }
+                        const link = document.createElement('a');
+                        link.href = URL.createObjectURL(blob);
+                        link.download = `我的反诈人格-${getPersonalityKey()}.jpg`;
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
+                        URL.revokeObjectURL(link.href);
+                        alert('✅ 图片已保存到相册！');
+                    }, 'image/jpeg', 0.9);
+                };
+
+                img.onerror = () => fallbackSave(url);
+                img.src = url;
             } catch (err) {
-                console.error('保存失败:', err);
-                // 回退方案：提示用户手动长按保存
-                alert('⚠️ 保存失败，请长按图片 → 选择“保存图片”');
+                console.error('长按保存失败:', err);
+                fallbackSave(url);
             }
         }
 
-        // 辅助函数：获取当前人格类型（用于文件名）
+        function fallbackSave(url) {
+            // 最终兜底：提示用户手动长按
+            alert('📌 请长按图片 → 选择【保存图片】\n（部分手机需在相册中查看）');
+        }
+
         function getPersonalityKey() {
-            const resultEl = document.getElementById('result');
-            if (!resultEl.style.display || resultEl.style.display === 'none') return 'unknown';
-            
             const img = document.getElementById('cat-image');
-            const src = img.src;
-            if (src.includes('sentinel')) return 'sentinel';
-            if (src.includes('guardian')) return 'guardian';
-            if (src.includes('healer')) return 'healer';
-            if (src.includes('newbie')) return 'newbie';
+            if (!img || !img.src) return 'unknown';
+            if (img.src.includes('sentinel')) return 'sentinel';
+            if (img.src.includes('guardian')) return 'guardian';
+            if (img.src.includes('healer')) return 'healer';
+            if (img.src.includes('newbie')) return 'newbie';
             return 'unknown';
         }
 
@@ -562,13 +565,12 @@
         document.getElementById('restart-btn').addEventListener('click', function() {
             document.getElementById('result').style.display = "none";
             document.getElementById('quiz').style.display = "block";
-            const radios = document.querySelectorAll('input[type="radio"]');
-            radios.forEach(radio => radio.checked = false);
+            document.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
         });
 
-        // 保存按钮（备用，长按为主）
+        // 保存按钮（辅助入口）
         document.getElementById('save-btn').addEventListener('click', function() {
-            saveImageToPhone(document.getElementById('cat-image').src);
+            saveImageNative(document.getElementById('cat-image').src);
         });
     </script>
 </body>
