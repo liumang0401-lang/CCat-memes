@@ -1,4 +1,16 @@
-// 1. 定义算分规则
+// ==========================================
+// 1. Supabase 初始化 (修复变量名冲突)
+// ==========================================
+// 注意：这里变量名改为 supabaseClient，避免和 CDN 全局变量 'supabase' 冲突
+const SUPABASE_URL = 'https://ocpiavpkyrpmuxnifxwk.supabase.co'; 
+const SUPABASE_KEY = 'sb_publishable_VNjweuA8UvWaWxNnvK0l1Q_Dxfw-D-3'; 
+
+// 使用 supabase.createClient 初始化
+const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+// ==========================================
+// 2. 算分逻辑 (保持原样)
+// ==========================================
 const scoreMap = [
   { A: 0, B: 1, C: 0.5, D: 2 }, // Q1
   { A: 0, B: 0.5, C: 0, D: 2 }, // Q2
@@ -12,7 +24,9 @@ const scoreMap = [
   { A: 0.5, B: 1, C: 2, D: 0 }  // Q10
 ];
 
-// 2. 定义猫咪图片路径
+// ==========================================
+// 3. 猫咪图片配置 (保持原样)
+// ==========================================
 const catImages = {
     sentinel: "sentinel.webp",
     guardian: "guardian.webp",
@@ -20,17 +34,23 @@ const catImages = {
     newbie: "newbie.webp"
 };
 
-// 3. 核心逻辑：点击按钮后执行
-document.getElementById('submit-btn').addEventListener('click', function() {
+// ==========================================
+// 4. 核心逻辑：点击按钮后执行
+// ==========================================
+document.getElementById('submit-btn').addEventListener('click', async function() {
   let totalScore = 0;
+  let userAnswers = {}; // 用于存储用户的答案
 
-  // 计算总分
+  // 计算总分 & 收集答案
   for (let i = 1; i <= 10; i++) {
     const selected = document.querySelector(`input[name="q${i}"]:checked`);
     if (!selected) {
       alert(`请完成第 ${i} 题！`);
       return;
     }
+    // 记录答案
+    userAnswers[`q${i}`] = selected.value;
+    // 计算分数
     totalScore += scoreMap[i - 1][selected.value];
   }
   totalScore = Math.round(totalScore * 2) / 2;
@@ -42,17 +62,37 @@ document.getElementById('submit-btn').addEventListener('click', function() {
   else if (totalScore >= 5) enKey = "healer";
   else enKey = "newbie";
 
-  // --- 页面切换与播放声音 ---
+  // ==========================================
+  // 5. 数据上传到 Supabase (新增部分)
+  // ==========================================
+  const { data, error } = await supabaseClient
+    .from('results') // 确保你的数据库表名叫 results
+    .insert([
+      { 
+        score: totalScore, 
+        level: enKey, 
+        answers: userAnswers, // 存为 JSON 格式
+        created_at: new Date() 
+      }
+    ])
+    .select();
 
-  // 隐藏题目，显示结果
+  if (error) {
+    console.error('上传失败:', error);
+    // 即使上传失败，也不影响用户看结果，所以这里只打印错误，不弹窗
+  } else {
+    console.log('数据上传成功:', data);
+  }
+
+  // ==========================================
+  // 6. 页面切换与播放声音 (保持原样)
+  // ==========================================
   document.getElementById('quiz').style.display = "none";
   document.getElementById('result').style.display = "block";
 
-  // 显示猫咪图片
   const imgEl = document.getElementById('cat-image');
   imgEl.src = catImages[enKey];
 
-  // 【关键】播放猫叫声
   var sound = document.getElementById('cat-sound');
   sound.play();
 
