@@ -88,6 +88,13 @@
         margin-top: 10px;
         display: none; /* 默认隐藏 */
     }
+    /* 加载状态样式 */
+    #loading {
+        display: none;
+        text-align: center;
+        color: #ff6b6b;
+        margin-top: 20px;
+    }
   </style>
 </head>
 <body>
@@ -188,6 +195,7 @@
   </div>
 
   <button id="submit-btn">测测我的反诈人格</button>
+  <div id="loading">📝 正在保存数据...</div>
   <div class="footer">天河反电信网络诈骗中心· 校园反诈公益测试</div>
 </div>
 
@@ -199,7 +207,15 @@
   <button onclick="location.reload()">🔄 再测一次</button>
 </div>
 
+<!-- 1. 引入 Supabase JS 库 -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script>
+// 2. 初始化 Supabase 客户端 (这里填你找到的 Key 和 URL)
+const supabaseUrl = 'https://ocpiavpkyrpmuxnifxwk.supabase.co' // 注意：去掉了 /rest/v1/
+const supabaseKey = 'sb_publishable_VNjweuA8UvWaWxNnvK0l1Q_Dxfw-D-3' // 你找到的 Publishable Key
+const supabase = supabase.createClient(supabaseUrl, supabaseKey)
+
 const scoreMap = [
   { A: 0, B: 1, C: 0.5, D: 2 }, // Q1
   { A: 0, B: 0.5, C: 0, D: 2 }, // Q2
@@ -213,7 +229,6 @@ const scoreMap = [
   { A: 0.5, B: 1, C: 2, D: 0 }  // Q10
 ];
 
-// ✅ 你的四张猫图直链（已验证可用）
 const catImages = { 
     sentinel: "sentinel.webp", 
     guardian: "guardian.webp", 
@@ -221,8 +236,11 @@ const catImages = {
     newbie: "newbie.webp" 
 };
 
-document.getElementById('submit-btn').addEventListener('click', function() {
+document.getElementById('submit-btn').addEventListener('click', async function() {
   let totalScore = 0;
+  let answers = {}; // 用来存用户的选择
+
+  // 计算分数并收集答案
   for (let i = 1; i <= 10; i++) {
     const selected = document.querySelector(`input[name="q${i}"]:checked`);
     if (!selected) {
@@ -230,7 +248,9 @@ document.getElementById('submit-btn').addEventListener('click', function() {
       return;
     }
     totalScore += scoreMap[i - 1][selected.value];
+    answers[`q${i}`] = selected.value; // 记录每一题的答案
   }
+  
   totalScore = Math.round(totalScore * 2) / 2;
 
   let enKey;
@@ -242,6 +262,27 @@ document.getElementById('submit-btn').addEventListener('click', function() {
   // 播放音效
   var audio = document.getElementById('cat-sound');
   if(audio) audio.play();
+
+  // 3. 保存数据到 Supabase
+  const loadingEl = document.getElementById('loading');
+  loadingEl.style.display = 'block'; // 显示“正在保存”
+
+  const { data, error } = await supabase
+    .from('quiz_results') // 你的表名
+    .insert({
+        score: totalScore,
+        personality: enKey,
+        answers: answers // 把所有答案作为一个JSON对象存进去
+    });
+
+  if (error) {
+    console.error('保存失败:', error);
+    // 即使保存失败，也不影响用户看结果，所以只打印错误，不弹窗打断
+  } else {
+    console.log('保存成功:', data);
+  }
+
+  loadingEl.style.display = 'none'; // 隐藏“正在保存”
 
   // 切换页面
   document.getElementById('quiz').style.display = 'none';
