@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>喵诈防御局 · 反诈人格测试</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: #fffaf5;
+      color: #333;
+      line-height: 1.6;
+      padding: 20px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    h1 {
+      text-align: center;
+      color: #ff6b6b;
+      margin-bottom: 20px;
+    }
+    .question {
+      background: white;
+      padding: 16px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      margin-bottom: 20px;
+    }
+    .question p {
+      font-weight: bold;
+      margin: 0 0 12px 0;
+      white-space: pre-line;
+    }
+    label {
+      display: block;
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 8px;
+      background: #fdf6f0;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    label:hover {
+      background: #fcead9;
+    }
+    input[type="radio"] {
+      margin-right: 10px;
+    }
+    button {
+      background: #ff6b6b;
+      color: white;
+      border: none;
+      padding: 14px 28px;
+      font-size: 18px;
+      font-weight: bold;
+      border-radius: 30px;
+      margin: 20px auto;
+      cursor: pointer;
+      display: block;
+      width: 80%;
+      max-width: 300px;
+      box-shadow: 0 4px 12px rgba(255,107,107,0.3);
+    }
+    button:hover {
+      background: #ff5252;
+    }
+    #result {
+      display: none;
+      text-align: center;
+      padding: 30px 0;
+    }
+    #result img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    }
+    .footer {
+      text-align: center;
+      color: #999;
+      font-size: 14px;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+
+<div id="quiz">
+  <h1>🐱 喵诈防御局</h1>
+  <p style="text-align:center; color:#666;">10道题，测测你的反诈人格！</p>
+
+  <!-- Q1 -->
+  <div class="question">
+    <p>Q1：你正在图书馆自习，微信突然弹出妈妈的消息
+“宝贝，妈妈手机刚刚摔坏了，打不了电话，用你阿姨的手机给你发的消息，我在菜市场买牛肉呢，你先给妈妈转200买菜钱~”附上一张菜市场的照片。你会？</p>
+    <label><input type="radio" name="q1" value="A"> A 转200过去，反正过两天拿生活费了</label>
+    <label><input type="radio" name="q1" value="B"> B 打电话给妈妈本人确认</label>
+    <label><input type="radio" name="q1" value="C"> C 先转100应急，等确认后再补</label>
+    <label><input type="radio" name="q1" value="D"> D 什么鬼？我妈根本不会叫我宝贝，不理！</label>
+  </div>
+
+  <!-- Q2 -->
+  <div class="question">
+    <p>Q2：你在群里做了四单点赞任务，每单都赚了20元，秒到账，但第五单需要垫付300元，完成任务后返350元。你有点犹豫，但群友都在晒到账截图“稳得很！”你会？</p>
+    <label><input type="radio" name="q2" value="A"> A 再试一单呗，反正前面都返了，也不是垫付很多啊</label>
+    <label><input type="radio" name="q2" value="B"> B 不搞了，感觉不对劲，但可以叫上室友先进来薅下前几单羊毛啊</label>
+    <label><input type="radio" name="q2" value="C"> C 整！三百冲一单，晚点翻倍赚回来</label>
+    <label><input type="radio" name="q2" value="D"> D 举报这个群，告诉同学们千万别进</label>
+  </div>
+
+  <!-- Q3 -->
+  <div class="question">
+    <p>Q3：有人高价回收你的《原神》账号，让你到“游易宝”平台交易。你注册后，看到余额显示“4500元”，但选择提现时要求缴纳2000元保证金，平台客服说“这是系统保护交易双方的规则，缴纳完即刻到账”。你会？</p>
+    <label><input type="radio" name="q3" value="A"> A 正规平台有什么好担心的，谁说玩游戏不能赚钱的</label>
+    <label><input type="radio" name="q3" value="B"> B 拒绝，我只在米哈游官方渠道交易</label>
+    <label><input type="radio" name="q3" value="C"> C 先充500试试，看看有啥反应</label>
+    <label><input type="radio" name="q3" value="D"> D 把链接发到反诈群，问“这操作靠谱么？”</label>
+  </div>
+
+  <!-- Q4 -->
+  <div class="question">
+    <p>Q4：表妹（12岁）兴奋地告诉你：“哥！我在视频号领到免费皮肤了，但是要扫1.88元激活耶，你能帮我吗？”你看到她手机屏幕上跳出“司法冻结”警告。你会？</p>
+    <label><input type="radio" name="q4" value="A"> A 让她赶紧付，别耽误领皮肤</label>
+    <label><input type="radio" name="q4" value="B"> B 自己扫码帮她付，省得她被骗更多</label>
+    <label><input type="radio" name="q4" value="C"> C 上交手机，不让她玩游戏</label>
+    <label><input type="radio" name="q4" value="D"> D 举报该视频号，教育其免费的才是最贵的</label>
+  </div>
+
+  <!-- Q5 -->
+  <div class="question">
+    <p>Q5：网恋了半年的女友突然跟你说：“在一起半年了，你能不能给我买一个纪念礼物或者给我转账5200证明你爱我呀？”你会？</p>
+    <label><input type="radio" name="q5" value="A"> A 当然可以，转账备注还写上“自愿赠与”</label>
+    <label><input type="radio" name="q5" value="B"> B 没见过面呢，先转个520稳妥一点~</label>
+    <label><input type="radio" name="q5" value="C"> C 我不可能网恋的，万一是抠脚大叔</label>
+    <label><input type="radio" name="q5" value="D"> D 骗我感情可以，骗我钱不行</label>
+  </div>
+
+  <!-- Q6 -->
+  <div class="question">
+    <p>Q6：视频通话里，辅导员一脸焦急：“你那个助学金还不领取，马上关闭领取通道了，你赶紧点群里的链接填信息申报，否则后果自负！”画面里确实是辅导员的脸和学校背景，连他脸上的痣都一模一样。你会？</p>
+    <label><input type="radio" name="q6" value="A"> A 截图发班长问到底有没有这回事</label>
+    <label><input type="radio" name="q6" value="B"> B 挂掉，直接上办公室找他去</label>
+    <label><input type="radio" name="q6" value="C"> C 发在班级群应该没问题，点进去看看</label>
+    <label><input type="radio" name="q6" value="D"> D 看看同学怎么填的，照着填一下</label>
+  </div>
+
+  <!-- Q7 -->
+  <div class="question">
+    <p>Q7：你接到电商平台客服电话“同学，你前天买的鞋子发的都是右脚，现在给你重新补发和额外补偿100元，别给我们差评好么？你打开支付宝备用金，按我说的操作领取”，你打开备用金，看到500元正在账户上，你会？</p>
+    <label><input type="radio" name="q7" value="A"> A 跟着客服姐姐操作，反正不用自己掏钱</label>
+    <label><input type="radio" name="q7" value="B"> B 挂掉，直接在电商平台问客服</label>
+    <label><input type="radio" name="q7" value="C"> C 先领500，再退100，白赚400块？岂不妙哉！</label>
+    <label><input type="radio" name="q7" value="D"> D 录屏举报，并把通话号码上传至国家反诈中心APP</label>
+  </div>
+
+  <!-- Q8 -->
+  <div class="question">
+    <p>Q8：你抢了三次陶喆演唱会门票都没成功，正懊恼时，上次卖你票的黄牛正在售卖团体票“仅限今晚，大粉有急事去不了，原价出连坐四张！可实名！带上信息来！”附上售票平台截图和座位图，你找了对方，他说“信不过我的话先付2000定金保留，尾款演出前一周付。”你会？</p>
+    <label><input type="radio" name="q8" value="A"> A 机会难得，这价格太香了，而且只是先付定金，转！</label>
+    <label><input type="radio" name="q8" value="B"> B 要求走闲鱼担保交易，或者演出当天现场验票再付全款</label>
+    <label><input type="radio" name="q8" value="C"> C 怎么可能信不过，上次出的票位置超好，我直接微信转你全款付！</label>
+    <label><input type="radio" name="q8" value="D"> D 截图到粉丝群询问真实性</label>
+  </div>
+
+  <!-- Q9 -->
+  <div class="question">
+    <p>Q9：期末周压力爆表，你看到校园墙有人发：“体测代跑80元包过/长期代课400包月/代写论文300起，学长学姐团队，售后无忧！”你还发现身边几个同学都找过代写，还挺靠谱。你会？</p>
+    <label><input type="radio" name="q9" value="A"> A 体测我真跑不动了，80就80</label>
+    <label><input type="radio" name="q9" value="B"> B 问问具体价格先，万一实在来不及呢</label>
+    <label><input type="radio" name="q9" value="C"> C 自己咬牙搞定，虽然累但安心</label>
+    <label><input type="radio" name="q9" value="D"> D 在该帖子底下评论“别找！有人因此被勒索2000元，还上了学校通报”</label>
+  </div>
+
+  <!-- Q10 -->
+  <div class="question">
+    <p>Q10：你装了国家反诈中心APP，但总是关着来电预警，这天，一个陌生电话打开，手机弹出“疑似诈骗！”你会？</p>
+    <label><input type="radio" name="q10" value="A"> A 终于轮到我了，开免提跟室友一起逗一下骗子</label>
+    <label><input type="radio" name="q10" value="B"> B 无聊，直接挂掉</label>
+    <label><input type="radio" name="q10" value="C"> C 点击举报按钮，标记该号码为诈骗</label>
+    <label><input type="radio" name="q10" value="D"> D 有时系统也会“智障”，接起来听听是啥，万一是什么重要电话呢</label>
+  </div>
+
+  <button id="submit-btn">测测我的反诈人格</button>
+  <div class="footer">天河反电信网络诈骗中心· 校园反诈公益测试</div>
+</div>
+
+<!-- 精简结果页 -->
+<div id="result">
+  <img id="cat-image" src="" alt="你的反诈猫">
+  <br><br>
+  <button onclick="location.reload()">🔄 再测一次</button>
+  <button id="download-btn">💾 保存图片</button>
+</div>
+
+<script>
+const scoreMap = [
+  { A: 0, B: 1, C: 0.5, D: 2 }, // Q1
+  { A: 0, B: 0.5, C: 0, D: 2 }, // Q2
+  { A: 0, B: 1, C: 0.5, D: 2 }, // Q3
+  { A: 0.5, B: 0, C: 1, D: 2 }, // Q4
+  { A: 0, B: 0.5, C: 1, D: 2 }, // Q5
+  { A: 2, B: 1, C: 0.5, D: 0 }, // Q6
+  { A: 0, B: 1, C: 0.5, D: 2 }, // Q7
+  { A: 0.5, B: 1, C: 0, D: 2 }, // Q8
+  { A: 0, B: 0.5, C: 1, D: 2 }, // Q9
+  { A: 0.5, B: 1, C: 2, D: 0 }  // Q10
+];
+
+// ✅ 你的四张猫图直链（已验证可用）
+const catImages = { 
+    sentinel: "sentinel.webp", 
+    guardian: "guardian.webp", 
+    healer: "healer.webp", 
+    newbie: "newbie.webp" 
+};
+
+document.getElementById('submit-btn').addEventListener('click', function() {
+  let totalScore = 0;
+  for (let i = 1; i <= 10; i++) {
+    const selected = document.querySelector(`input[name="q${i}"]:checked`);
+    if (!selected) {
+      alert(`请完成第 ${i} 题！`);
+      return;
+    }
+    totalScore += scoreMap[i - 1][selected.value];
+  }
+  totalScore = Math.round(totalScore * 2) / 2;
+
+  let enKey;
+  if (totalScore >= 16) enKey = "sentinel";
+  else if (totalScore >= 10) enKey = "guardian";
+  else if (totalScore >= 5) enKey = "healer";
+  else enKey = "newbie";
+
+  // 切换页面
+  document.getElementById('quiz').style.display = 'none';
+  document.getElementById('result').style.display = 'block';
+  const imgEl = document.getElementById('cat-image');
+  imgEl.src = catImages[enKey];
+
+  // 保存图片功能
+  document.getElementById('download-btn').onclick = function() {
+    const link = document.createElement('a');
+    link.download = `我的反诈人格-${enKey}.jpg`;
+    link.href = imgEl.src;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+});
+</script>
+<audio id="cat-sound" src="meow.mp3"></audio>
+</body>
+</html>
